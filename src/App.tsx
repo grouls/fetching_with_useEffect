@@ -4,9 +4,14 @@ import './style.css';
 
 type ItemProps = {
   id: number;
-  title?: string;
-  name?: string;
+  name: string;
+  phone: string;
+  email: string;
+  company: {
+    name: string;
+  }
 };
+
 export const App: FC = () => {
   const [resource, setResourceType] = useState('');
   const [items, setItems] = useState<ItemProps[]>([]);
@@ -27,22 +32,18 @@ export const App: FC = () => {
   return (
     <>
       <div>
-        <button aria-label='button to fetch users' type="button" name="posts" onClick={handleClick}>
-          Posts
-        </button>
-        <button aria-label='button to fetch users' type="button" name="users" onClick={handleClick}>
-          Users
+        <button tabIndex={0} aria-label='button to fetch users' type="button" name="users" onClick={handleClick}>
+          Fetch Users
         </button>
       </div>
-      <div>
-        {items.map((item: ItemProps) => (
-          <ul >
-            <li>Id: {item.id}</li>
-            {item.title && <li>Title : {item.title}</li>}
-            {item.name && <li>Name: {item.name}</li>}
-          </ul>
-        ))}
-      </div>
+      {items.map((item: ItemProps, index: number) => (
+        <div tabIndex={index + 1} id={item.id.toString()} key={item.id} role='list' className="infoContainer">
+            <label htmlFor="name">Name:</label><li id="name"> {item.name}</li>
+            <label htmlFor="phone">Phone:</label><li id="phone"> {item.phone}</li>
+            <label htmlFor="email">Email:</label><li id="email"> {item.email}</li>
+            <label htmlFor="company">Company:</label><li id="company"> {item.company.name}</li>
+        </div>
+      ))}
     </>
   );
 };

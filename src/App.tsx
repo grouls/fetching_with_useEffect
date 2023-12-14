@@ -27,20 +27,22 @@ export const App: FC = () => {
   return (
     <>
       <div>
-        <button type="button" name="posts" onClick={handleClick}>
+        <button aria-label='button to fetch users' type="button" name="posts" onClick={handleClick}>
           Posts
         </button>
-        <button type="button" name="users" onClick={handleClick}>
+        <button aria-label='button to fetch users' type="button" name="users" onClick={handleClick}>
           Users
         </button>
       </div>
-      {items.map((item: ItemProps) => (
-        <ul>
-          <li>Id: {item.id}</li>
-          {item.title && <li>Title : {item.title}</li>}
-          {item.name && <li>Name: {item.name}</li>}
-        </ul>
-      ))}
+      <div>
+        {items.map((item: ItemProps) => (
+          <ul >
+            <li>Id: {item.id}</li>
+            {item.title && <li>Title : {item.title}</li>}
+            {item.name && <li>Name: {item.name}</li>}
+          </ul>
+        ))}
+      </div>
     </>
   );
 };
